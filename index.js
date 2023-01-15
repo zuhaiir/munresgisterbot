@@ -9,9 +9,6 @@ const db = low(adapter);
 const bodyparser = require('body-parser');    
 const webpush = require('web-push');
 const fs = require('fs');
-const https = require('https');
-const key = fs.readFileSync('./key.pem');
-const cert = fs.readFileSync('./cert.pem');
 
 db.defaults({
   subscriptions: []
