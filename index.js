@@ -8,7 +8,6 @@ const adapter = new FileSync('.data/db.json');
 const db = low(adapter);
 const bodyparser = require('body-parser');    
 const webpush = require('web-push');
-const fs = require('fs');
 
 db.defaults({
   subscriptions: []
@@ -63,17 +62,11 @@ function pushNotify(message) {
   });
 }
 
-
 app.post('/subscribe', (req, res) => {
     db.get('subscriptions')
       .push(req.body)
       .write();
     res.sendStatus(200);
-});
-const server = https.createServer({key: key, cert: cert}, app);
-
-server.listen(443, () => {
-  console.log('express running');
 });
 
 function randint(min, max) {
